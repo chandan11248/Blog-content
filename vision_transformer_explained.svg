@@ -1,0 +1,422 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 2000" width="1400" height="2000">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="inputGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="embedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="attentionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="ffnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#43e97b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="outputGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fa709a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fee140;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Arrow marker -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#555" />
+    </marker>
+    
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1400" height="2000" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="700" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="#2d3748">
+    Vision Transformer (ViT) Architecture
+  </text>
+  
+  <!-- ========== STEP 1: INPUT IMAGE ========== -->
+  <g id="input-section">
+    <text x="700" y="90" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#4a5568">
+      Step 1: Input Image
+    </text>
+    
+    <!-- Input image representation -->
+    <rect x="575" y="110" width="250" height="250" fill="url(#inputGrad)" rx="8" opacity="0.9">
+      <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Grid overlay to show patches -->
+    <line x1="625" y1="110" x2="625" y2="360" stroke="white" stroke-width="2" opacity="0.6"/>
+    <line x1="675" y1="110" x2="675" y2="360" stroke="white" stroke-width="2" opacity="0.6"/>
+    <line x1="725" y1="110" x2="725" y2="360" stroke="white" stroke-width="2" opacity="0.6"/>
+    <line x1="775" y1="110" x2="775" y2="360" stroke="white" stroke-width="2" opacity="0.6"/>
+    <line x1="575" y1="160" x2="825" y2="160" stroke="white" stroke-width="2" opacity="0.6"/>
+    <line x1="575" y1="210" x2="825" y2="210" stroke="white" stroke-width="2" opacity="0.6"/>
+    <line x1="575" y1="260" x2="825" y2="260" stroke="white" stroke-width="2" opacity="0.6"/>
+    <line x1="575" y1="310" x2="825" y2="310" stroke="white" stroke-width="2" opacity="0.6"/>
+    
+    <text x="950" y="200" font-family="Arial, sans-serif" font-size="14" fill="#4a5568">
+      <tspan x="950" dy="0">Image: H × W × C</tspan>
+      <tspan x="950" dy="20">(e.g., 224×224×3)</tspan>
+      <tspan x="950" dy="30">Split into patches</tspan>
+      <tspan x="950" dy="20">Patch size: P × P</tspan>
+      <tspan x="950" dy="20">(e.g., 16×16)</tspan>
+    </text>
+  </g>
+  
+  <!-- Arrow down -->
+  <path d="M 700 370 L 700 420" stroke="#555" stroke-width="3" fill="none" marker-end="url(#arrowhead)">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- ========== STEP 2: PATCH EMBEDDING ========== -->
+  <g id="patch-embedding">
+    <text x="700" y="450" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#4a5568">
+      Step 2: Patch Embedding
+    </text>
+    
+    <!-- Individual patches -->
+    <g id="patches">
+      <rect x="400" y="470" width="45" height="45" fill="url(#embedGrad)" rx="4" opacity="0.8">
+        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" begin="0s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="455" y="470" width="45" height="45" fill="url(#embedGrad)" rx="4" opacity="0.8">
+        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" begin="0.2s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="510" y="470" width="45" height="45" fill="url(#embedGrad)" rx="4" opacity="0.8">
+        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" begin="0.4s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="565" y="470" width="45" height="45" fill="url(#embedGrad)" rx="4" opacity="0.8">
+        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+      </rect>
+      <text x="625" y="497" font-family="Arial, sans-serif" font-size="18" fill="#4a5568">...</text>
+      <rect x="650" y="470" width="45" height="45" fill="url(#embedGrad)" rx="4" opacity="0.8">
+        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" begin="0.8s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+    
+    <!-- Linear projection arrow -->
+    <path d="M 700 525 L 700 560" stroke="#555" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+    
+    <!-- Embedding vectors -->
+    <g id="embeddings">
+      <rect x="400" y="570" width="45" height="80" fill="#fbbf24" rx="4" stroke="#f59e0b" stroke-width="2">
+        <animate attributeName="height" values="80;90;80" dur="2s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="455" y="570" width="45" height="80" fill="#fbbf24" rx="4" stroke="#f59e0b" stroke-width="2">
+        <animate attributeName="height" values="80;90;80" dur="2s" begin="0.2s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="510" y="570" width="45" height="80" fill="#fbbf24" rx="4" stroke="#f59e0b" stroke-width="2">
+        <animate attributeName="height" values="80;90;80" dur="2s" begin="0.4s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="565" y="570" width="45" height="80" fill="#fbbf24" rx="4" stroke="#f59e0b" stroke-width="2">
+        <animate attributeName="height" values="80;90;80" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+      </rect>
+      <text x="625" y="615" font-family="Arial, sans-serif" font-size="18" fill="#4a5568">...</text>
+      <rect x="650" y="570" width="45" height="80" fill="#fbbf24" rx="4" stroke="#f59e0b" stroke-width="2">
+        <animate attributeName="height" values="80;90;80" dur="2s" begin="0.8s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+    
+    <text x="800" y="590" font-family="Arial, sans-serif" font-size="14" fill="#4a5568">
+      <tspan x="800" dy="0">Linear Projection</tspan>
+      <tspan x="800" dy="20">Each patch → D-dim vector</tspan>
+      <tspan x="800" dy="20">Total: N patches</tspan>
+      <tspan x="800" dy="20">N = (H/P) × (W/P)</tspan>
+    </text>
+  </g>
+  
+  <!-- Arrow down -->
+  <path d="M 700 660 L 700 700" stroke="#555" stroke-width="3" fill="none" marker-end="url(#arrowhead)">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- ========== STEP 3: ADD POSITIONAL ENCODING + CLS TOKEN ========== -->
+  <g id="positional-encoding">
+    <text x="700" y="730" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#4a5568">
+      Step 3: Add [CLS] Token + Positional Encoding
+    </text>
+    
+    <!-- CLS token -->
+    <rect x="340" y="750" width="45" height="80" fill="#ef4444" rx="4" stroke="#dc2626" stroke-width="2">
+      <animate attributeName="fill" values="#ef4444;#f87171;#ef4444" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    <text x="362" y="795" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">CLS</text>
+    
+    <!-- Patch embeddings with positional encoding -->
+    <g id="pos-embeddings">
+      <rect x="400" y="750" width="45" height="80" fill="#10b981" rx="4" stroke="#059669" stroke-width="2"/>
+      <rect x="455" y="750" width="45" height="80" fill="#10b981" rx="4" stroke="#059669" stroke-width="2"/>
+      <rect x="510" y="750" width="45" height="80" fill="#10b981" rx="4" stroke="#059669" stroke-width="2"/>
+      <rect x="565" y="750" width="45" height="80" fill="#10b981" rx="4" stroke="#059669" stroke-width="2"/>
+      <text x="625" y="795" font-family="Arial, sans-serif" font-size="18" fill="#4a5568">...</text>
+      <rect x="650" y="750" width="45" height="80" fill="#10b981" rx="4" stroke="#059669" stroke-width="2"/>
+    </g>
+    
+    <!-- Positional encoding visualization -->
+    <g id="pos-encoding-pattern">
+      <circle cx="362" cy="770" r="3" fill="white" opacity="0.6">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="422" cy="770" r="3" fill="white" opacity="0.6">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" begin="0.1s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="477" cy="770" r="3" fill="white" opacity="0.6">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" begin="0.2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="532" cy="770" r="3" fill="white" opacity="0.6">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" begin="0.3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="587" cy="770" r="3" fill="white" opacity="0.6">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" begin="0.4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="672" cy="770" r="3" fill="white" opacity="0.6">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+    
+    <text x="800" y="770" font-family="Arial, sans-serif" font-size="14" fill="#4a5568">
+      <tspan x="800" dy="0">[CLS] token: learnable</tspan>
+      <tspan x="800" dy="20">classification token</tspan>
+      <tspan x="800" dy="25">Positional Encoding:</tspan>
+      <tspan x="800" dy="20">Adds position info</tspan>
+      <tspan x="800" dy="20">to each token</tspan>
+    </text>
+  </g>
+  
+  <!-- Arrow down -->
+  <path d="M 500 840 L 500 890" stroke="#555" stroke-width="3" fill="none" marker-end="url(#arrowhead)">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" begin="1s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- ========== STEP 4: TRANSFORMER ENCODER ========== -->
+  <g id="transformer-encoder">
+    <text x="700" y="920" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#4a5568">
+      Step 4: Transformer Encoder (L layers)
+    </text>
+    
+    <!-- Encoder Block 1 -->
+    <g id="encoder-block-1">
+      <rect x="200" y="950" width="600" height="280" fill="none" stroke="#cbd5e0" stroke-width="2" rx="8"/>
+      
+      <!-- Layer Norm 1 -->
+      <rect x="220" y="970" width="560" height="40" fill="#e0e7ff" rx="4" stroke="#818cf8" stroke-width="1.5">
+        <animate attributeName="fill" values="#e0e7ff;#c7d2fe;#e0e7ff" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <text x="500" y="995" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#4338ca" text-anchor="middle">Layer Normalization</text>
+      
+      <!-- Multi-Head Self-Attention -->
+      <rect x="220" y="1025" width="560" height="80" fill="url(#attentionGrad)" rx="6" opacity="0.9">
+        <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite"/>
+      </rect>
+      <text x="500" y="1055" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Multi-Head Self-Attention</text>
+      <text x="500" y="1078" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">Q, K, V from same input</text>
+      <text x="500" y="1095" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">Heads: 8-16, each attends to different aspects</text>
+      
+      <!-- Attention heads visualization -->
+      <g id="attention-heads">
+        <circle cx="280" cy="1050" r="8" fill="#fbbf24" opacity="0.8">
+          <animate attributeName="r" values="8;10;8" dur="1.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="350" cy="1050" r="8" fill="#fbbf24" opacity="0.8">
+          <animate attributeName="r" values="8;10;8" dur="1.5s" begin="0.2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="420" cy="1050" r="8" fill="#fbbf24" opacity="0.8">
+          <animate attributeName="r" values="8;10;8" dur="1.5s" begin="0.4s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="490" cy="1050" r="8" fill="#fbbf24" opacity="0.8">
+          <animate attributeName="r" values="8;10;8" dur="1.5s" begin="0.6s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="560" cy="1050" r="8" fill="#fbbf24" opacity="0.8">
+          <animate attributeName="r" values="8;10;8" dur="1.5s" begin="0.8s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="630" cy="1050" r="8" fill="#fbbf24" opacity="0.8">
+          <animate attributeName="r" values="8;10;8" dur="1.5s" begin="1s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="700" cy="1050" r="8" fill="#fbbf24" opacity="0.8">
+          <animate attributeName="r" values="8;10;8" dur="1.5s" begin="1.2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="720" cy="1050" r="8" fill="#fbbf24" opacity="0.8">
+          <animate attributeName="r" values="8;10;8" dur="1.5s" begin="1.4s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      
+      <!-- Residual connection -->
+      <path d="M 190 1000 L 180 1000 L 180 1120 L 190 1120" stroke="#f59e0b" stroke-width="3" fill="none">
+        <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+      </path>
+      <text x="150" y="1060" font-family="Arial, sans-serif" font-size="11" fill="#f59e0b" transform="rotate(-90 150 1060)">Residual</text>
+      
+      <!-- Add -->
+      <circle cx="500" cy="1120" r="15" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+      <text x="500" y="1125" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">+</text>
+      
+      <!-- Layer Norm 2 -->
+      <rect x="220" y="1145" width="560" height="40" fill="#e0e7ff" rx="4" stroke="#818cf8" stroke-width="1.5">
+        <animate attributeName="fill" values="#e0e7ff;#c7d2fe;#e0e7ff" dur="3s" begin="0.5s" repeatCount="indefinite"/>
+      </rect>
+      <text x="500" y="1170" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#4338ca" text-anchor="middle">Layer Normalization</text>
+      
+      <!-- Feed Forward Network -->
+      <rect x="220" y="1195" width="560" height="50" fill="url(#ffnGrad)" rx="6" opacity="0.9">
+        <animate attributeName="opacity" values="0.9;1;0.9" dur="2.5s" repeatCount="indefinite"/>
+      </rect>
+      <text x="500" y="1218" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Feed-Forward Network (MLP)</text>
+      <text x="500" y="1235" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">Linear → GELU → Linear</text>
+      
+      <!-- Residual connection 2 -->
+      <path d="M 190 1165 L 170 1165 L 170 1260 L 190 1260" stroke="#f59e0b" stroke-width="3" fill="none">
+        <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+      </path>
+      
+      <!-- Add 2 -->
+      <circle cx="500" cy="1260" r="15" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+      <text x="500" y="1265" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">+</text>
+    </g>
+    
+    <!-- More encoder layers indication -->
+    <text x="500" y="1300" font-family="Arial, sans-serif" font-size="18" fill="#4a5568" text-anchor="middle">
+      ×L layers (e.g., L = 12)
+    </text>
+    <path d="M 400 1310 L 400 1340" stroke="#555" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+    <path d="M 500 1310 L 500 1340" stroke="#555" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+    <path d="M 600 1310 L 600 1340" stroke="#555" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+    
+    <text x="900" y="1050" font-family="Arial, sans-serif" font-size="13" fill="#4a5568">
+      <tspan x="900" dy="0">Self-Attention:</tspan>
+      <tspan x="900" dy="18">• Each token attends</tspan>
+      <tspan x="900" dy="16">  to all other tokens</tspan>
+      <tspan x="900" dy="16">• Captures global</tspan>
+      <tspan x="900" dy="16">  relationships</tspan>
+      <tspan x="900" dy="25">Feed-Forward:</tspan>
+      <tspan x="900" dy="18">• Applied to each</tspan>
+      <tspan x="900" dy="16">  token independently</tspan>
+      <tspan x="900" dy="16">• Same across all tokens</tspan>
+    </text>
+  </g>
+  
+  <!-- Arrow down -->
+  <path d="M 500 1350 L 500 1390" stroke="#555" stroke-width="3" fill="none" marker-end="url(#arrowhead)">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- ========== STEP 5: EXTRACT CLS TOKEN ========== -->
+  <g id="cls-extraction">
+    <text x="700" y="1420" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#4a5568">
+      Step 5: Extract [CLS] Token Representation
+    </text>
+    
+    <!-- All tokens -->
+    <rect x="280" y="1440" width="40" height="70" fill="#e0e7ff" rx="4" stroke="#818cf8" stroke-width="1" opacity="0.5"/>
+    <rect x="330" y="1440" width="40" height="70" fill="#e0e7ff" rx="4" stroke="#818cf8" stroke-width="1" opacity="0.5"/>
+    <rect x="380" y="1440" width="40" height="70" fill="#e0e7ff" rx="4" stroke="#818cf8" stroke-width="1" opacity="0.5"/>
+    <text x="440" y="1480" font-family="Arial, sans-serif" font-size="16" fill="#4a5568">...</text>
+    <rect x="470" y="1440" width="40" height="70" fill="#e0e7ff" rx="4" stroke="#818cf8" stroke-width="1" opacity="0.5"/>
+    
+    <!-- CLS token highlighted -->
+    <rect x="560" y="1430" width="60" height="90" fill="#ef4444" rx="6" stroke="#dc2626" stroke-width="3">
+      <animate attributeName="fill" values="#ef4444;#f87171;#ef4444" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="3;5;3" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    <text x="590" y="1480" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">
+      <tspan x="590">CLS</tspan>
+      <tspan x="590" dy="20">Token</tspan>
+    </text>
+    
+    <text x="750" y="1465" font-family="Arial, sans-serif" font-size="14" fill="#4a5568">
+      <tspan x="750" dy="0">[CLS] token aggregates</tspan>
+      <tspan x="750" dy="20">global image information</tspan>
+      <tspan x="750" dy="20">Used for classification</tspan>
+    </text>
+  </g>
+  
+  <!-- Arrow down -->
+  <path d="M 590 1530 L 590 1570" stroke="#555" stroke-width="3" fill="none" marker-end="url(#arrowhead)">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" begin="2s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- ========== STEP 6: CLASSIFICATION HEAD ========== -->
+  <g id="classification-head">
+    <text x="700" y="1600" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#4a5568">
+      Step 6: Classification Head
+    </text>
+    
+    <!-- MLP Head -->
+    <rect x="450" y="1620" width="280" height="60" fill="url(#outputGrad)" rx="8" opacity="0.95">
+      <animate attributeName="opacity" values="0.95;1;0.95" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    <text x="590" y="1645" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">MLP Head</text>
+    <text x="590" y="1665" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">(LayerNorm → Linear)</text>
+    
+    <!-- Arrow down -->
+    <path d="M 590 1690 L 590 1730" stroke="#555" stroke-width="3" fill="none" marker-end="url(#arrowhead)">
+      <animate attributeName="opacity" values="0;1;0" dur="2s" begin="2.5s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Output classes -->
+    <g id="output-classes">
+      <rect x="350" y="1750" width="480" height="100" fill="#fef3c7" rx="8" stroke="#f59e0b" stroke-width="2"/>
+      <text x="590" y="1775" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#92400e" text-anchor="middle">Class Probabilities</text>
+      
+      <!-- Class bars -->
+      <g id="prob-bars">
+        <rect x="370" y="1790" width="200" height="15" fill="#10b981" rx="3">
+          <animate attributeName="width" values="200;220;200" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <text x="580" y="1802" font-family="Arial, sans-serif" font-size="11" fill="#065f46">Class 1: Cat (0.82)</text>
+        
+        <rect x="370" y="1810" width="100" height="15" fill="#3b82f6" rx="3">
+          <animate attributeName="width" values="100;110;100" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+        </rect>
+        <text x="480" y="1822" font-family="Arial, sans-serif" font-size="11" fill="#1e3a8a">Class 2: Dog (0.15)</text>
+        
+        <rect x="370" y="1830" width="15" height="15" fill="#6b7280" rx="3">
+          <animate attributeName="width" values="15;20;15" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+        </rect>
+        <text x="395" y="1842" font-family="Arial, sans-serif" font-size="11" fill="#374151">Class 3: Other (0.03)</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- ========== KEY CONCEPTS PANEL ========== -->
+  <g id="key-concepts">
+    <rect x="50" y="1900" width="1300" height="90" fill="#f0fdf4" rx="8" stroke="#10b981" stroke-width="2"/>
+    <text x="700" y="1925" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#065f46" text-anchor="middle">
+      Key ViT Concepts
+    </text>
+    
+    <text x="80" y="1950" font-family="Arial, sans-serif" font-size="13" fill="#064e3b">
+      <tspan x="80" dy="0">• <tspan font-weight="bold">Patch Embedding:</tspan> Image divided into fixed-size patches, linearly embedded</tspan>
+      <tspan x="80" dy="18">• <tspan font-weight="bold">Self-Attention:</tspan> Global receptive field from layer 1 (vs CNNs' local filters)</tspan>
+      <tspan x="80" dy="18">• <tspan font-weight="bold">Positional Encoding:</tspan> Learnable position embeddings preserve spatial information</tspan>
+    </text>
+  </g>
+  
+  <!-- Data flow animation -->
+  <g id="data-flow">
+    <circle cx="700" cy="235" r="5" fill="#ef4444" opacity="0">
+      <animate attributeName="opacity" values="0;1;0" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="235;495;610;790;1065;1475;1650;1800" dur="8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Version info -->
+  <text x="1350" y="1990" font-family="Arial, sans-serif" font-size="10" fill="#9ca3af" text-anchor="end">
+    ViT Architecture v1.0
+  </text>
+</svg>
